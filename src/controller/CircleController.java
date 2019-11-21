@@ -23,6 +23,7 @@ import thread.CircleThread;
 public class CircleController implements Initializable {
 	@FXML private AnchorPane anchor;
 	@FXML private Label bounce;
+	@FXML private Label b1;
 	private Server s;
 	private CircleThread thread;
 	private ArrayList<Ball> balls;
@@ -35,8 +36,8 @@ public class CircleController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		generateBalls();
-		loadBalls();
+		generateBalls();
+//		loadBalls();
 	}
 	
 	public void generateBalls() {
@@ -56,21 +57,6 @@ public class CircleController implements Initializable {
 			
 		}
 	}
-	public void loadBalls() {
-		stop = 0;
-		ArrayList<Ball> balls = s.getBalls();
-		for(int i = 0; i < balls.size(); i++) {
-			if(balls.get(i).isStop()) {
-				stop++;
-			}
-			Circle circle = new Circle(balls.get(i).getRadio());
-			circle.setCenterX(balls.get(i).getPosX());
-			circle.setCenterY(balls.get(i).getPosY());
-			anchor.getChildren().add(circle);
-			thread = new CircleThread(circle,balls.get(i));
-			thread.start();
-		}
-	}
 	
 	public void aboutTheGame(ActionEvent event) {
 		Stage stage = new Stage();
@@ -86,7 +72,7 @@ public class CircleController implements Initializable {
 		label.setMaxSize(400, 400);
 		label.setWrapText(true);
 		anchor2.getChildren().add(label);
-		Scene scene = new Scene(anchor2, 400, 200);
+		Scene scene = new Scene(anchor2, 400, 400);
 		stage.setScene(scene);
 		stage.setTitle("About the game");
 		stage.show();
@@ -96,7 +82,7 @@ public class CircleController implements Initializable {
 		try {
 			Stage s = (Stage)anchor.getScene().getWindow();
 			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/loadWindow.fxml"));
-			Scene scene = new Scene(root,600,400);
+			Scene scene = new Scene(root,400,300);
 			s.setScene(scene);
 			s.show();
 		}catch(Exception e) {
@@ -105,14 +91,13 @@ public class CircleController implements Initializable {
 	}
 	
 	public void stopBall(MouseEvent event) {
-		ArrayList<Ball> balls = s.getBalls();
 		for(int i = 0; i < balls.size(); i++) {
 			if(!balls.get(i).isStop()) {
 				double x = event.getSceneX()-(balls.get(i).getPosX());
 				double y = event.getSceneY()-(balls.get(i).getPosY());
-				double total = x+y;
+				double z = x+y;
 				double radio = balls.get(i).getRadio();
-				if(total <= radio) {
+				if(z <= radio) {
 					balls.get(i).setStop(true);
 					stop++;
 				}
@@ -129,6 +114,7 @@ public class CircleController implements Initializable {
 		for(int i = 0; i < balls.size(); i++) {
 			bounces += balls.get(i).getBounces();
 		}
+		b1.setVisible(true);
 		bounce.setText(""+bounces);
 	}
 	

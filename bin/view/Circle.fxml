@@ -7,7 +7,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CircleController">
+<AnchorPane fx:id="anchor" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CircleController">
    <children>
       <MenuBar layoutY="-1.0" prefHeight="25.0" prefWidth="600.0">
         <menus>
@@ -28,7 +28,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="14.0" layoutY="24.0" text="Bounces:" />
+      <Label fx:id="b1" layoutX="14.0" layoutY="24.0" text="Bounces:" visible="false" />
       <Label fx:id="bounce" layoutX="71.0" layoutY="24.0" prefHeight="17.0" prefWidth="37.0" />
    </children>
 </AnchorPane>

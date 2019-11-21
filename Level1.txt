@@ -3,5 +3,5 @@
 #radio posX posY espera direccion rebotes
 25	321	213	5	DERECHA	0	false
 10	350	322	10	DERECHA	0	false
-60	200	300	6	ABAJO	0	false
-74	21	206	12	ARRIBA	0	false
+9	200	300	6	ABAJO	0	false
+24	21	206	12	ARRIBA	0	false
