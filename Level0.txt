@@ -1,7 +1,7 @@
 #nivel
 0
-#diametro posX posY espera direccion rebotes
+#radio posX posY espera direccion rebotes
 50	321	213	10	IZQUIERDA	0	false
-61	350	322	15	ABAJO	0	false
-85	400	155	11	DERECHA	0	false
+61	310	322	15	ABAJO	0	false
+85	100	155	11	DERECHA	0	false
 74	21	206	5	ARRIBA	0	false

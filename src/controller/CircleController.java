@@ -22,18 +22,21 @@ import thread.CircleThread;
 
 public class CircleController implements Initializable {
 	@FXML private AnchorPane anchor;
+	@FXML private Label bounce;
 	private Server s;
 	private CircleThread thread;
 	private ArrayList<Ball> balls;
 	private int stop;
 
-	public void initialize() {
-		
-	}	
-	
 	public void generateLevel(String file) {
-		s = new Server(file);
-		generateBalls();
+		try {
+			s = new Server(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		generateBalls();
+		loadBalls();
 	}
 	
 	public void generateBalls() {
@@ -45,12 +48,27 @@ public class CircleController implements Initializable {
 			}
 			Ball b = balls.get(i);
 			Circle c = new Circle(b.getRadio());
-			c.setLayoutX(b.getPosX());
-			c.setLayoutY(b.getPosY());
+			c.setCenterX(b.getPosX());
+			c.setCenterY(b.getPosY());
 			anchor.getChildren().add(c);	
 			thread = new CircleThread(c,b);
 			thread.start();
 			
+		}
+	}
+	public void loadBalls() {
+		stop = 0;
+		ArrayList<Ball> balls = s.getBalls();
+		for(int i = 0; i < balls.size(); i++) {
+			if(balls.get(i).isStop()) {
+				stop++;
+			}
+			Circle circle = new Circle(balls.get(i).getRadio());
+			circle.setCenterX(balls.get(i).getPosX());
+			circle.setCenterY(balls.get(i).getPosY());
+			anchor.getChildren().add(circle);
+			thread = new CircleThread(circle,balls.get(i));
+			thread.start();
 		}
 	}
 	
@@ -106,11 +124,12 @@ public class CircleController implements Initializable {
 	}
 	
 	public void finish() {
-		int bounce = 0;
+		int bounces = 0;
 		ArrayList<Ball> balls = s.getBalls();
 		for(int i = 0; i < balls.size(); i++) {
-			bounce += balls.get(i).getBounces();
+			bounces += balls.get(i).getBounces();
 		}
+		bounce.setText(""+bounces);
 	}
 	
 	

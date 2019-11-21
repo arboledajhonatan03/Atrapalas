@@ -26,21 +26,12 @@ public class LoadController implements Initializable {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
 	public TextField getLvl() {
 		return lvl;
 	}
-
-
-
 	public void setLvl(TextField lvl) {
 		this.lvl = lvl;
 	}
-
-
-
 	public void fileChoosed(ActionEvent event) {
 		if(!new File(lvl.getText()+".txt").exists()) {
 			alert.setVisible(true);

@@ -32,13 +32,15 @@ public class Server {
 	 * @param players2
 	 * @param file
 	 * @param level
+	 * @throws IOException 
 	 */
-	public Server(String file) {
+	public Server(String file) throws IOException {
 		balls = new ArrayList<>();
 		p0 = new ArrayList<>();
 		p1 = new ArrayList<>();
 		p2 = new ArrayList<>();
 		this.file = file;
+		loadBalls();
 	}
 	
 	
